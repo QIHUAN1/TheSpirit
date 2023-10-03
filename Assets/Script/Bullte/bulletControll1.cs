@@ -6,10 +6,11 @@ public class bulletControll1 : MonoBehaviour
 {
 
     private bool hasHit = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,14 +39,6 @@ public class bulletControll1 : MonoBehaviour
 
             // Mark as hit to prevent multiple attachments
             hasHit = true;
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            CircleController circleController = other.GetComponent<CircleController>();
-            circleController.circleStart = true;
         }
     }
 }

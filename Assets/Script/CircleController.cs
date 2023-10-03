@@ -5,7 +5,7 @@ using UnityEngine;
 public class CircleController : MonoBehaviour
 {
     public bool circleStart;
-    public GameObject Circle;
+    public GameObject theCircle;
     
     // Start is called before the first frame update
     void Start()
@@ -18,11 +18,27 @@ public class CircleController : MonoBehaviour
     {
         if(circleStart == true)
         {
-            Circle.SetActive(true);
+            theCircle.SetActive(true);
         }
         else
         {
-            Circle.SetActive(false);
+            theCircle.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            circleStart = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            circleStart = false;
         }
     }
 }
