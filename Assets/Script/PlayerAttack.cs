@@ -15,11 +15,16 @@ public class PlayerAttack : MonoBehaviour
 
     public float cooldown;
 
-
-    public float bullte;
     [SerializeField] TextMeshProUGUI bullteNum;
+    [SerializeField] TextMeshProUGUI bullteName;
 
     public Slider slider;
+
+
+    public List<GameObject> bulletTypes;
+    public List<float> bulletCounts;
+    private int selectedBulletIndex = 0;
+
 
     public GameObject effact;
 
@@ -30,19 +35,25 @@ public class PlayerAttack : MonoBehaviour
         readytoShoot = true;
         cooldown = 2;
 
-        bullte = 3;
+        UpdateUI();
+
+    }
+
+    public void UpdateUI()
+    {
+        if (bullteName != null && bullteNum != null)
+        {
+            // Update the UI text elements with the selected bullet's name and count
+            bullteName.text = bulletTypes[selectedBulletIndex].name;
+            bullteNum.text = "Bullet :" + bulletCounts[selectedBulletIndex].ToString();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(bullte < 0)
-        {
-            bullte = 0;
-        }
-
-
-        bullteNum.text = "Bullte:" + bullte.ToString("0");
+        SwitchBullte();
+        
         slider.value = cooldown;
 
 
@@ -69,6 +80,27 @@ public class PlayerAttack : MonoBehaviour
             }   
 
             
+        }
+    }
+
+    void SwitchBullte()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            selectedBulletIndex--;
+            if (selectedBulletIndex < 0)
+                selectedBulletIndex = bulletTypes.Count - 1;
+
+            UpdateUI();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            selectedBulletIndex++;
+            if (selectedBulletIndex >= bulletTypes.Count)
+                selectedBulletIndex = 0;
+
+            UpdateUI();
         }
     }
 
@@ -112,42 +144,48 @@ public class PlayerAttack : MonoBehaviour
     {
         if(readytoShoot == true)
         {
-            
-            if(bullte > 0)
+
+            if (selectedBulletIndex >= 0 && selectedBulletIndex < bulletCounts.Count)
             {
 
-                
-                RaycastHit hitinfo;
-                Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-
-                if (Physics.Raycast(ray, out hitinfo, 60f, aimRay))
+                if (bulletCounts[selectedBulletIndex] > 0)
                 {
-                    Debug.Log(hitinfo.transform.name);
-                    //Destroy(hitinfo.transform.gameObject);
+                    RaycastHit hitinfo;
+                    Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
 
-                    EnemyAI enemy = hitinfo.transform.GetComponent<EnemyAI>();
-                    if(enemy != null)
+                    if (Physics.Raycast(ray, out hitinfo, 60f, aimRay))
                     {
-                        //enemy.TakeDamage();
+                        Debug.Log(hitinfo.transform.name);
+                        //Destroy(hitinfo.transform.gameObject);
 
-                        Instantiate(effact, hitinfo.point, Quaternion.LookRotation(hitinfo.normal));
+                        EnemyAI enemy = hitinfo.transform.GetComponent<EnemyAI>();
+                        if (enemy != null)
+                        {
+                            //enemy.TakeDamage();
+
+                            Instantiate(bulletTypes[selectedBulletIndex], hitinfo.point, Quaternion.LookRotation(hitinfo.normal));
+                        }
+
+
+
                     }
 
+                    bulletCounts[selectedBulletIndex]--;
+                    UpdateUI();
 
-                    
+                    readytoShoot = false;
+                    cooldown = 0;
                 }
 
-                bullte -= 1;
+                else
+                {
+                    Debug.Log("no bullet lmao");
+                }
+            }
 
-                readytoShoot = false;
-                cooldown = 0;
-            }
-            
-            else
-            {
-                Debug.Log("no bullet lmao");
-            }
         }
+
+            
     }
 
 }
