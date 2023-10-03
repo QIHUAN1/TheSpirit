@@ -8,21 +8,37 @@ public class bulletControll1 : MonoBehaviour
     private bool hasHit = false;
 
     [SerializeField]private bool canRelease = false;
-
-
-
-    // Start is called before the first frame update
+    
     void Start()
     {
 
-
     }
+
 
     // Update is called once per frame
     void Update()
     {
-     
+        Release();
 
+    }
+
+    void Release()
+    {
+        if(canRelease == true)
+        {
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                EnemyAI enemyAI = gameObject.GetComponentInParent<EnemyAI>();
+                if (enemyAI != null)
+                {
+                    enemyAI.TakeDamage();
+                    Destroy(gameObject);
+                }
+
+            }
+        }
+       
     }
 
 
@@ -42,10 +58,31 @@ public class bulletControll1 : MonoBehaviour
                 bulletRigidbody.velocity = Vector3.zero;
             }
 
-            // Optionally, add any other behavior you want for the bullet on hit
 
-            // Mark as hit to prevent multiple attachments
             hasHit = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Cylinder"))
+        {
+
+            canRelease = true;
+            Debug.Log("Player collided with the cube!");
+
+
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Cylinder"))
+        {
+
+            canRelease = false;
+            Debug.Log("Player go away!");
         }
     }
 }

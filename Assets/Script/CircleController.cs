@@ -7,22 +7,8 @@ public class CircleController : MonoBehaviour
     public GameObject theCircle;
 
 
-    public delegate void BullStateChanged(bool newState);
-    public static event BullStateChanged OnBullStateChanged;
+    public bool circleStart = false;
 
-    public bool circleStart;
-
-
-    public bool IsBullActive
-    {
-        get { return circleStart; }
-        set
-        {
-            circleStart = value;
-            // Trigger the event when the bull state changes
-            OnBullStateChanged?.Invoke(circleStart);
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +27,14 @@ public class CircleController : MonoBehaviour
         {
             theCircle.SetActive(false);
         }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            circleStart = false;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Bullet"))
         {
