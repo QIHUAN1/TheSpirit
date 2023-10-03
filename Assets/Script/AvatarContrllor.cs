@@ -10,11 +10,13 @@ public class AvatarContrllor : MonoBehaviour
     [SerializeField]private float newSpeed;
 
     public float rotateSpeed;
+
+    public float healthPoint;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthPoint = 4;
     }
 
     // Update is called once per frame

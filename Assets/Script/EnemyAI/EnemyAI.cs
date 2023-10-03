@@ -13,7 +13,6 @@ public class EnemyAI : MonoBehaviour
     //control mode
     private float followspeed = 16f;
     private float newSpeed;
-
     private CharacterController characterController;
     [SerializeField]private bool isControllerEnabled = true;
 
@@ -29,7 +28,6 @@ public class EnemyAI : MonoBehaviour
         HP = 3;
         timer.SetActive(false);
         characterController = GetComponent<CharacterController>();
-
     }
 
     // Update is called once per frame
@@ -54,7 +52,6 @@ public class EnemyAI : MonoBehaviour
         isControllerEnabled = true;
         characterController.enabled = isControllerEnabled;
         Movement();
-
 
         timer.SetActive(true);
         countdown -= 1 * Time.deltaTime;
