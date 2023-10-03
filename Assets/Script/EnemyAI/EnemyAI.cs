@@ -9,54 +9,52 @@ public class EnemyAI : MonoBehaviour
     public float HP;
     [SerializeField] TextMeshProUGUI Healthpoint;
 
-    //control mode
-    public Transform player;
-    public float followspeed = 5f;
-    private Vector3 initialOffset;
-    public bool starttest;
 
+    //control mode
+    private float followspeed = 16f;
+    private float newSpeed;
+
+    private CharacterController characterController;
+    [SerializeField]private bool isControllerEnabled = true;
 
     public bool playerSpell = false;
     public GameObject timer;
     public Slider slider;
     float countdown = 20f;
 
+
     // Start is called before the first frame update
     void Start()
     {
         HP = 3;
         timer.SetActive(false);
-        starttest = false;
+        characterController = GetComponent<CharacterController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
         Healthpoint.text = "HP: " + HP.ToString("0");
 
         if(playerSpell == true)
         {
             ControlMode();
         }
-
-        if (starttest == true)
-        {
-            initialOffset = transform.position - player.position;
-        }
-        else
-        {
-            
-        }
+        
+       
     }
 
     void ControlMode()
 
     {
-        starttest = true;
-        starttest = false;
+        isControllerEnabled = true;
+        characterController.enabled = isControllerEnabled;
+        Movement();
 
-        Vector3 targetPosition = player.position + initialOffset;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, followspeed * Time.deltaTime);
 
         timer.SetActive(true);
         countdown -= 1 * Time.deltaTime;
@@ -65,7 +63,34 @@ public class EnemyAI : MonoBehaviour
         {
             countdown = 0;
             playerSpell = false;
+            isControllerEnabled = false ;
+            characterController.enabled = isControllerEnabled;
             countdown = 20;
+        }
+    }
+
+    void Movement()
+    {
+        newSpeed = followspeed;
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+            newSpeed = followspeed * 1.5f;
+        }
+
+        else
+        {
+            newSpeed = followspeed;
+        }
+
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        if (direction.magnitude >= 0.1f)
+        {
+            characterController.Move(direction * newSpeed * Time.deltaTime);
         }
     }
 
