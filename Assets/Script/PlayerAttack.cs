@@ -21,6 +21,8 @@ public class PlayerAttack : MonoBehaviour
 
     public Slider slider;
 
+    public GameObject effact;
+
 
     // Start is called before the first frame update
     void Start()
@@ -123,11 +125,15 @@ public class PlayerAttack : MonoBehaviour
                     Debug.Log(hitinfo.transform.name);
                     //Destroy(hitinfo.transform.gameObject);
 
-                    EnemyAI enemyAI = hitinfo.transform.GetComponent<EnemyAI>();
-                    if(enemyAI != null)
+                    EnemyAI enemy = hitinfo.transform.GetComponent<EnemyAI>();
+                    if(enemy != null)
                     {
-                        enemyAI.TakeDamage();
+                        //enemy.TakeDamage();
+
+                        Instantiate(effact, hitinfo.point, Quaternion.LookRotation(hitinfo.normal));
                     }
+
+
                     
                 }
 
