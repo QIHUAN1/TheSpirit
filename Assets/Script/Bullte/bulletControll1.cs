@@ -7,17 +7,24 @@ public class bulletControll1 : MonoBehaviour
 
     private bool hasHit = false;
 
+    [SerializeField]private bool canRelease = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+     
+
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {

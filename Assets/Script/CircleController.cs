@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class CircleController : MonoBehaviour
 {
-    public bool circleStart;
     public GameObject theCircle;
-    
+
+
+    public delegate void BullStateChanged(bool newState);
+    public static event BullStateChanged OnBullStateChanged;
+
+    public bool circleStart;
+
+
+    public bool IsBullActive
+    {
+        get { return circleStart; }
+        set
+        {
+            circleStart = value;
+            // Trigger the event when the bull state changes
+            OnBullStateChanged?.Invoke(circleStart);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
