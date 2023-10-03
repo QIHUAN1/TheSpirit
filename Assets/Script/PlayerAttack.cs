@@ -113,6 +113,8 @@ public class PlayerAttack : MonoBehaviour
             
             if(bullte > 0)
             {
+
+                
                 RaycastHit hitinfo;
                 Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
 
