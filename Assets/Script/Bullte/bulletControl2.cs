@@ -54,7 +54,7 @@ public class bulletControl2 : MonoBehaviour
             if (bulletRigidbody != null)
             {
                 bulletRigidbody.isKinematic = true;
-                bulletRigidbody.velocity = Vector3.zero;
+                //bulletRigidbody.velocity = Vector3.zero;
             }
 
 

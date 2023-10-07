@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
 public class EnemyAI : MonoBehaviour
 {
+    //health
     public float HP;
     [SerializeField] TextMeshProUGUI Healthpoint;
 
@@ -21,7 +21,6 @@ public class EnemyAI : MonoBehaviour
     public Slider slider;
     float countdown = 20f;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +32,6 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         Healthpoint.text = "HP: " + HP.ToString("0");
 
         if(playerSpell == true)
