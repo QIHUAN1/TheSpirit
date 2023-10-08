@@ -110,7 +110,6 @@ public class Enemy : MonoBehaviour
 
     private void Attacking()
     {
-        agent.SetDestination(player.position);
 
         transform.LookAt(player);
 
