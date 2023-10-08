@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     //idle
     public bool isIdle;
 
+    [Space]
     //moveing
     public Vector3 walkPoint;
     public bool walkPointSet;
@@ -20,9 +22,8 @@ public class Enemy : MonoBehaviour
     public Transform walkPointRangeMax;
     public Transform walkPointRangeMin;
 
-
-
     //attack
+    [Space]
     public float timeBetweenAttacks;
     bool alreadyAttack;
     private Animator animator;
@@ -33,8 +34,11 @@ public class Enemy : MonoBehaviour
 
     //yellow spell
     //yellow < blue
+    [Space]
     public bool yellowSpell;
-    private Vector3 initialPosition;
+    public Slider slider;
+    public GameObject yellowtimer;
+    public float yellowCountdown;
 
 
 
@@ -49,7 +53,11 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         animator.SetBool("CanAttack", false);
+        
+        //Yellow
         yellowSpell = false;
+        yellowtimer.SetActive(false);
+        yellowCountdown = 30;
     }
 
     private void Update()
@@ -59,7 +67,6 @@ public class Enemy : MonoBehaviour
 
         if(yellowSpell == false)
         {
-
             if (!playerInAttackRange && !playerInSightRange)
             {
                 if (isIdle == false)
@@ -77,6 +84,10 @@ public class Enemy : MonoBehaviour
                 Chasing();
             }
             if (playerInAttackRange && playerInSightRange) Attacking();
+        }
+        else
+        {
+            YellowControl();
         }
 
 
@@ -145,6 +156,21 @@ public class Enemy : MonoBehaviour
     {
         alreadyAttack = false;
         animator.SetBool("CanAttack", false);
+
+    }
+
+    private void YellowControl()
+    {
+        yellowtimer.SetActive(true);
+        yellowCountdown -= 1 * Time.deltaTime;
+        slider.value = yellowCountdown;
+        if(yellowCountdown <= 0)
+        {
+            yellowCountdown = 0;
+            yellowtimer.SetActive(false);
+            yellowSpell = false;
+            yellowCountdown = 30;
+        }
 
     }
 
