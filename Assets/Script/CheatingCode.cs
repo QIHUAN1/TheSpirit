@@ -9,6 +9,8 @@ public class CheatingCode : MonoBehaviour
     public GameObject blue;
     public GameObject yellow;
 
+    public GameObject potion;
+
 
 
     // Start is called before the first frame update
@@ -32,6 +34,11 @@ public class CheatingCode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Instantiate(blue, transform.position, Quaternion.identity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Instantiate(potion, transform.position, Quaternion.identity);
         }
     }
 }

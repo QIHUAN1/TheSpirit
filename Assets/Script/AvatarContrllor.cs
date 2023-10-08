@@ -15,6 +15,10 @@ public class AvatarContrllor : MonoBehaviour
     public float healthPoint;
     bool canHurt;
 
+    //potion
+    [SerializeField] TextMeshProUGUI potionUI;
+    public float potionNum;
+
     public float rotateSpeed;
 
 
@@ -39,6 +43,8 @@ public class AvatarContrllor : MonoBehaviour
             Debug.Log("gameover");
         }
 
+        Potion();
+        potionUI.text = "Potion: " + potionNum.ToString("0");
     }
 
     void Movement()
@@ -98,6 +104,23 @@ public class AvatarContrllor : MonoBehaviour
     void CanHurtAgain()
     {
         canHurt = true;
+    }
+
+    void Potion()
+    {
+        if(potionNum <= 0)
+        {
+            potionNum = 0;
+        }
+
+        if(potionNum > 0)
+        {
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                healthPoint += 1;
+                potionNum -= 1;
+            }
+        }
     }
 
 }
