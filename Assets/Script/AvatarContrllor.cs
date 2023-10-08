@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AvatarContrllor : MonoBehaviour
 {
@@ -9,14 +10,19 @@ public class AvatarContrllor : MonoBehaviour
     public float speed = 6;
     [SerializeField]private float newSpeed;
 
+    //hp
+    [SerializeField] TextMeshProUGUI Healthpoint;
+    public float healthPoint;
+    bool canHurt;
+
     public float rotateSpeed;
 
-    public float healthPoint;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         healthPoint = 4;
+        canHurt = true;
     }
 
     // Update is called once per frame
@@ -25,6 +31,13 @@ public class AvatarContrllor : MonoBehaviour
         Movement();
 
         LookatMouse();
+
+        Healthpoint.text = "HP: " + healthPoint.ToString("0");
+
+        if (healthPoint <= 0)
+        {
+            Debug.Log("gameover");
+        }
 
     }
 
@@ -67,4 +80,24 @@ public class AvatarContrllor : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("shadow"))
+        {
+          if(canHurt)
+            {
+                healthPoint -= 1;
+                canHurt = false;
+                Invoke("CanHurtAgain", 2f);
+            }
+
+        }
+    }
+
+    void CanHurtAgain()
+    {
+        canHurt = true;
+    }
+
 }
