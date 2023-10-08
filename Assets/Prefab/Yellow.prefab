@@ -4839,9 +4839,9 @@ GameObject:
   - component: {fileID: 8260915243256189535}
   - component: {fileID: 2813489133312896190}
   - component: {fileID: 5004242368790820589}
-  - component: {fileID: 6847721408586765703}
   - component: {fileID: 5648320374360910821}
   - component: {fileID: 9111429667579043640}
+  - component: {fileID: 6644981337409368907}
   m_Layer: 0
   m_Name: Yellow
   m_TagString: Bullet
@@ -4915,19 +4915,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6847721408586765703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5633890581010385277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa9dcc716bf4eb4b870c55447af3411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canRelease: 0
 --- !u!65 &5648320374360910821
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4976,3 +4963,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6644981337409368907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5633890581010385277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605a3c009146f494ba69edc5fdab9dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRelease: 0

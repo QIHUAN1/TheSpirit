@@ -31,7 +31,12 @@ public class Enemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    
+    //yellow spell
+    //yellow < blue
+    public bool yellowSpell;
+    private Vector3 initialPosition;
+
+
 
 
     private void Awake()
@@ -44,6 +49,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         animator.SetBool("CanAttack", false);
+        yellowSpell = false;
     }
 
     private void Update()
@@ -51,23 +57,28 @@ public class Enemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, isPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, isPlayer);
 
-        if (!playerInAttackRange && !playerInSightRange) 
-        { 
-            if(isIdle == false)
-            {
-                Moving();
-            }
-
-            else
-            {
-                Idleing();
-            }
-        }
-        if (!playerInAttackRange && playerInSightRange)
+        if(yellowSpell == false)
         {
-            Chasing();
+
+            if (!playerInAttackRange && !playerInSightRange)
+            {
+                if (isIdle == false)
+                {
+                    Moving();
+                }
+
+                else
+                {
+                    Idleing();
+                }
+            }
+            if (!playerInAttackRange && playerInSightRange)
+            {
+                Chasing();
+            }
+            if (playerInAttackRange && playerInSightRange) Attacking();
         }
-        if (playerInAttackRange && playerInSightRange) Attacking();
+
 
     }
 
@@ -108,13 +119,6 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-
-        //Gizmos.DrawSphere(transform.position, walkPointRange);
-
-    }
 
     private void Chasing()
     {
@@ -143,5 +147,6 @@ public class Enemy : MonoBehaviour
         animator.SetBool("CanAttack", false);
 
     }
+
 
 }
