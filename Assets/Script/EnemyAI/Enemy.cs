@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
         //Yellow
         yellowSpell = false;
         yellowtimer.SetActive(false);
+        isIdle = true;
     }
 
     private void Update()
@@ -65,6 +66,11 @@ public class Enemy : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, isPlayer);
 
 
+
+        if(playerInSightRange)
+        {
+            isIdle = false;
+        }
         EnemyAI enemyAI = gameObject.GetComponent<EnemyAI>();
        
 

@@ -26,7 +26,10 @@ public class PlayerAttack : MonoBehaviour
     private int selectedBulletIndex = 0;
 
 
-    public GameObject effact;
+    //public GameObject effact;
+
+    public LineRenderer lineRenderer;
+
 
 
     // Start is called before the first frame update
@@ -64,6 +67,7 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             aimMode = false;
+            lineRenderer.enabled = false;
         }
 
 
@@ -129,14 +133,19 @@ public class PlayerAttack : MonoBehaviour
         //aim line
         RaycastHit hitinfo;
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        lineRenderer.enabled = true;
         if (Physics.Raycast(ray, out hitinfo, 60f))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitinfo.distance, Color.green);
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitinfo.distance, Color.red);
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, hitinfo.point);
 
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 60f, Color.green);
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 60f, Color.red);
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position + transform.forward * 60f);
         }
     }
 

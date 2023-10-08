@@ -5,23 +5,30 @@ using UnityEngine;
 public class Tips : MonoBehaviour
 {
     public GameObject tutorial;
+    public bool openOrNot;
     // Start is called before the first frame update
     void Start()
     {
-        tutorial.SetActive(false);
+        openOrNot = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+
+            openOrNot = !openOrNot;
+        }
+
+        if(openOrNot == true)
         {
             tutorial.SetActive(true);
         }
-
-        if (Input.GetKeyUp(KeyCode.Tab))
+        else
         {
             tutorial.SetActive(false);
         }
+        
     }
 }
