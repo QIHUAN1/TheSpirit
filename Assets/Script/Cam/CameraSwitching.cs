@@ -21,8 +21,11 @@ public class CameraSwitching : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RoomManager rm = gameObject.GetComponentInParent<RoomManager>();
-        rm.Cube1();
+        if(other.CompareTag("Player"))
+        {
+            RoomManager rm = gameObject.GetComponentInParent<RoomManager>();
+            rm.Cube1();
+        }
     }
 
 }
