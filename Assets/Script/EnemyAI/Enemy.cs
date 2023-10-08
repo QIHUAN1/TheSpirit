@@ -110,7 +110,20 @@ public class Enemy : MonoBehaviour
 
     private void Attacking()
     {
+        agent.SetDestination(player.position);
 
+        transform.LookAt(player);
+
+        if(!alreadyAttack)
+        {
+            alreadyAttack = true;
+            Invoke("ResetAttack", timeBetweenAttacks);
+        }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttack = false;
     }
 
 }
