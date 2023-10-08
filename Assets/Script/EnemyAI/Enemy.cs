@@ -25,16 +25,25 @@ public class Enemy : MonoBehaviour
     //attack
     public float timeBetweenAttacks;
     bool alreadyAttack;
+    private Animator animator;
 
     //states
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
+    
 
 
     private void Awake()
     {
         player = GameObject.Find("Avatar").transform;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        animator.SetBool("CanAttack", false);
     }
 
     private void Update()
@@ -54,7 +63,10 @@ public class Enemy : MonoBehaviour
                 Idleing();
             }
         }
-        if (!playerInAttackRange && playerInSightRange) Chasing();
+        if (!playerInAttackRange && playerInSightRange)
+        {
+            Chasing();
+        }
         if (playerInAttackRange && playerInSightRange) Attacking();
 
     }
@@ -66,6 +78,7 @@ public class Enemy : MonoBehaviour
 
     private void Moving()
     {
+        agent.stoppingDistance = 0;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -105,15 +118,19 @@ public class Enemy : MonoBehaviour
 
     private void Chasing()
     {
+        agent.stoppingDistance = 25;
         agent.SetDestination(player.position);
     }
 
     private void Attacking()
     {
+        agent.stoppingDistance = 25;
+        agent.SetDestination(player.position);
+        
+        animator.SetBool("CanAttack", true);
 
-        transform.LookAt(player);
 
-        if(!alreadyAttack)
+        if (!alreadyAttack)
         {
             alreadyAttack = true;
             Invoke("ResetAttack", timeBetweenAttacks);
@@ -123,6 +140,8 @@ public class Enemy : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttack = false;
+        animator.SetBool("CanAttack", false);
+
     }
 
 }
