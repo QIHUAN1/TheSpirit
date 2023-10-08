@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
         //Yellow
         yellowSpell = false;
         yellowtimer.SetActive(false);
-        yellowCountdown = 30;
     }
 
     private void Update()
@@ -65,31 +64,37 @@ public class Enemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, isPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, isPlayer);
 
-        if(yellowSpell == false)
-        {
-            if (!playerInAttackRange && !playerInSightRange)
-            {
-                if (isIdle == false)
-                {
-                    Moving();
-                }
 
-                else
-                {
-                    Idleing();
-                }
-            }
-            if (!playerInAttackRange && playerInSightRange)
-            {
-                Chasing();
-            }
-            if (playerInAttackRange && playerInSightRange) Attacking();
-        }
-        else
-        {
-            YellowControl();
-        }
+        EnemyAI enemyAI = gameObject.GetComponent<EnemyAI>();
+       
 
+        if(enemyAI.playerSpell == false)
+        {
+            if (yellowSpell == false)
+            {
+                if (!playerInAttackRange && !playerInSightRange)
+                {
+                    if (isIdle == false)
+                    {
+                        Moving();
+                    }
+
+                    else
+                    {
+                        Idleing();
+                    }
+                }
+                if (!playerInAttackRange && playerInSightRange)
+                {
+                    Chasing();
+                }
+                if (playerInAttackRange && playerInSightRange) Attacking();
+            }
+            else
+            {
+                YellowControl();
+            }
+        } 
 
     }
 
@@ -161,6 +166,8 @@ public class Enemy : MonoBehaviour
 
     private void YellowControl()
     {
+
+        
         yellowtimer.SetActive(true);
         yellowCountdown -= 1 * Time.deltaTime;
         slider.value = yellowCountdown;
@@ -170,6 +177,7 @@ public class Enemy : MonoBehaviour
             yellowtimer.SetActive(false);
             yellowSpell = false;
             yellowCountdown = 30;
+
         }
 
     }

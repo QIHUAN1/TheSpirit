@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//red boom -1 hp
 
 public class bulletControll1 : MonoBehaviour
 {

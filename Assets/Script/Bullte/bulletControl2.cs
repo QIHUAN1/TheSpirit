@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//blue control control enemy for 10s
 
 public class bulletControl2 : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class bulletControl2 : MonoBehaviour
                 if (enemyAI != null)
                 {
                     enemyAI.playerSpell = true;
+                    enemyAI.countdown = 20f;
                     Destroy(gameObject);
                 }
 

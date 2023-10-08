@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] TextMeshProUGUI Healthpoint;
 
 
-    //control mode
+    //control mode - blue
     private float followspeed = 16f;
     private float newSpeed;
     private CharacterController characterController;
@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     public bool playerSpell = false;
     public GameObject timer;
     public Slider slider;
-    float countdown = 20f;
+    public float countdown = 20f;
 
     // Start is called before the first frame update
     void Start()

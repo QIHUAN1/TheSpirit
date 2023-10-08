@@ -26,6 +26,7 @@ public class bulletControl3 : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.yellowSpell = true;
+                    enemy.yellowCountdown = 30f;
                     Destroy(gameObject);
                 }
 

@@ -1924,7 +1924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &560998024
 Transform:
   m_ObjectHideFlags: 0
@@ -2609,7 +2609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &882970205
 Transform:
   m_ObjectHideFlags: 0
@@ -4047,6 +4047,7 @@ MonoBehaviour:
   playerSpell: 0
   timer: {fileID: 1512075272}
   slider: {fileID: 1021684188}
+  countdown: 20
 --- !u!54 &1411111534
 Rigidbody:
   m_ObjectHideFlags: 0
