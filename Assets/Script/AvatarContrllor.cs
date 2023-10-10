@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class AvatarContrllor : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class AvatarContrllor : MonoBehaviour
 
         if (healthPoint <= 0)
         {
-            Debug.Log("gameover");
+            SceneManager.LoadScene(0);
         }
 
         Potion();

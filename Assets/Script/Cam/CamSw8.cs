@@ -9,7 +9,7 @@ public class CamSw8 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             RoomManager rm = gameObject.GetComponentInParent<RoomManager>();
-            rm.Cube9();
+            rm.Cube8();
         }
 
     }
