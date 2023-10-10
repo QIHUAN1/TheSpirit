@@ -7,16 +7,19 @@ public class RoomManager : MonoBehaviour
     public bool room1;
     public bool room2;
     public bool room3;
+    public bool room3_5;
 
     public GameObject room1object;
     public GameObject room2object;
     public GameObject room3object;
+    public GameObject room3_5object;
 
     private void Start()
     {
         room1object.SetActive(true);
         room2object.SetActive(false);
         room3object.SetActive(false);
+        room3_5object.SetActive(false);
     }
 
     private void Update()
@@ -52,6 +55,15 @@ public class RoomManager : MonoBehaviour
         {
             room3object.SetActive(false);
         }
+
+        if (room3_5 == true)
+        {
+            room3_5object.SetActive(true);
+        }
+        else
+        {
+            room3_5object.SetActive(false);
+        }
     }
 
     public void Cube1()
@@ -64,6 +76,12 @@ public class RoomManager : MonoBehaviour
     {
         room2 = !room2;
         room3 = !room3;
+    }
+
+    public void Cube3()
+    {
+        room3 = !room3;
+        room3_5 = !room3_5;
     }
 
 }
