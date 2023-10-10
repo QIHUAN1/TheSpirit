@@ -6,7 +6,12 @@ public class CamSw13 : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        RoomManager rm = gameObject.GetComponentInParent<RoomManager>();
-        rm.Cube13();
+
+        if (other.CompareTag("Player"))
+        {
+            RoomManager rm = gameObject.GetComponentInParent<RoomManager>();
+            rm.Cube13();
+        }
+
     }
 }

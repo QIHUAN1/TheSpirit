@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
 {
     //health
     public float HP;
-    [SerializeField] TextMeshProUGUI Healthpoint;
 
 
     //control mode - blue
@@ -24,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HP = 3;
+        HP = 2;
         timer.SetActive(false);
         characterController = GetComponent<CharacterController>();
     }
@@ -32,7 +31,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Healthpoint.text = "HP: " + HP.ToString("0");
+
 
         if(playerSpell == true)
         {

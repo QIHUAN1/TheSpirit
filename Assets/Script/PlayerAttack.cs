@@ -18,6 +18,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] TextMeshProUGUI bullteNum;
     [SerializeField] TextMeshProUGUI bullteName;
 
+    [SerializeField] TextMeshProUGUI redB;
+    [SerializeField] TextMeshProUGUI yellowB;
+    [SerializeField] TextMeshProUGUI blueB;
+
+
     public Slider slider;
 
 
@@ -49,6 +54,10 @@ public class PlayerAttack : MonoBehaviour
             // Update the UI text elements with the selected bullet's name and count
             bullteName.text = bulletTypes[selectedBulletIndex].name;
             bullteNum.text = "Spell :" + bulletCounts[selectedBulletIndex].ToString();
+
+            redB.text = "Red Spell : " + bulletCounts[0];
+            yellowB.text = "Yellow Spell : " + bulletCounts[1];
+            blueB.text = "Blue Spell : " + bulletCounts[2];
         }
     }
 
