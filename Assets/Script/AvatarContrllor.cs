@@ -91,7 +91,7 @@ public class AvatarContrllor : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float hitdist;
 
-        if(Playerplane.Raycast(ray,out hitdist))
+        if (Playerplane.Raycast(ray, out hitdist))
         {
             Vector3 targetPoint = ray.GetPoint(hitdist);
             Quaternion targetrotation = Quaternion.LookRotation(targetPoint - transform.position);
