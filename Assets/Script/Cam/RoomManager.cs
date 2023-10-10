@@ -15,6 +15,8 @@ public class RoomManager : MonoBehaviour
     public bool room7;
     public bool room8;
     public bool room9;
+    public bool room10;
+    public bool room10_5;
 
     public GameObject room1object;
     public GameObject room2object;
@@ -27,6 +29,8 @@ public class RoomManager : MonoBehaviour
     public GameObject room7object;
     public GameObject room8object;
     public GameObject room9object;
+    public GameObject room10object;
+    public GameObject room10_5object;
 
     private void Start()
     {
@@ -41,6 +45,8 @@ public class RoomManager : MonoBehaviour
         room7object.SetActive(false);
         room8object.SetActive(false);
         room9object.SetActive(false);
+        room10object.SetActive(false);
+        room10_5object.SetActive(false);
     }
 
     private void Update()
@@ -148,6 +154,24 @@ public class RoomManager : MonoBehaviour
         {
             room9object.SetActive(false);
         }
+
+        if (room10 == true)
+        {
+            room10object.SetActive(true);
+        }
+        else
+        {
+            room10object.SetActive(false);
+        }
+
+        if (room10_5 == true)
+        {
+            room10_5object.SetActive(true);
+        }
+        else
+        {
+            room10_5object.SetActive(false);
+        }
     }
 
     public void Cube1()
@@ -208,6 +232,24 @@ public class RoomManager : MonoBehaviour
     {
         room8 = !room8;
         room9 = !room9;
+    }
+
+    public void Cube11()
+    {
+        room9 = !room9;
+        room10 = !room10;
+    }
+
+    public void Cube12()
+    {
+        room10 = !room10;
+        room10_5 = !room10_5;
+    }
+
+    public void Cube13()
+    {
+        room10_5 = !room10_5;
+        room7 = !room7;
     }
 
 }
