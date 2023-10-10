@@ -194,7 +194,7 @@ public class RoomManager : MonoBehaviour
 
     public void Cube8()
     {
-        room4 = !room4;
+        room4_5 = !room4_5;
         room7 = !room7;
     }
 
