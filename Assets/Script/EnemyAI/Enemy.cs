@@ -182,7 +182,7 @@ public class Enemy : MonoBehaviour
             yellowCountdown = 0;
             yellowtimer.SetActive(false);
             yellowSpell = false;
-            yellowCountdown = 30;
+            yellowCountdown = 10;
 
         }
 
