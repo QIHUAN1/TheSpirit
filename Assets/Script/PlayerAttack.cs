@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
         {
             // Update the UI text elements with the selected bullet's name and count
             bullteName.text = bulletTypes[selectedBulletIndex].name;
-            bullteNum.text = "Bullet :" + bulletCounts[selectedBulletIndex].ToString();
+            bullteNum.text = "Spell :" + bulletCounts[selectedBulletIndex].ToString();
         }
     }
 
