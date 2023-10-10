@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
 
         //walkPointSet = true;
 
-        if (Physics.Raycast(walkPoint, -transform.up, 10f, isGorund))
+        if (Physics.Raycast(walkPoint, -transform.up, 20f, isGorund))
         {
            walkPointSet = true;
         }

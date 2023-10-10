@@ -709,8 +709,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8175327854124884275}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 40.1, y: 5.7, z: -2.2}
-  m_LocalScale: {x: 5.99065, y: 5.9906497, z: 5.99065}
+  m_LocalPosition: {x: 40.105, y: 2.8252, z: -2.1932}
+  m_LocalScale: {x: 8.426449, y: 8.426448, z: 8.426449}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8228463137208059160}
@@ -805,7 +805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  Healthpoint: {fileID: 0}
   isControllerEnabled: 1
   playerSpell: 0
   timer: {fileID: 2872067572018116407}
@@ -968,8 +967,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8525017688827326722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7177853, z: 0.367239}
-  m_LocalScale: {x: 0.33454, y: 0.41723, z: 1}
+  m_LocalPosition: {x: 0, y: 0.7177853, z: 0.03627}
+  m_LocalScale: {x: 0.33454, y: 0.41723, z: 0.93854535}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1361623258270793068}
