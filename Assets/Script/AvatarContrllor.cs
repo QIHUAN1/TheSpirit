@@ -7,7 +7,7 @@ public class AvatarContrllor : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 6;
+    public float speed;
     [SerializeField]private float newSpeed;
 
     //hp
@@ -49,6 +49,18 @@ public class AvatarContrllor : MonoBehaviour
 
     void Movement()
     {
+        //speed up
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 75;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = 50;
+        }
+
+
         newSpeed = speed;
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
@@ -70,6 +82,7 @@ public class AvatarContrllor : MonoBehaviour
         {
             controller.Move(direction * newSpeed * Time.deltaTime);
         }
+
     }
 
     void LookatMouse()
