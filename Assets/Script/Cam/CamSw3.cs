@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class CamSw3 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        RoomManager rm = gameObject.GetComponentInParent<RoomManager>();
+        rm.Cube3();
     }
 }
